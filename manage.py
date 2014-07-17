@@ -34,7 +34,6 @@ def db_command():
 @LazyCli
 def i18n_command():
     from i18n.cli import I18nCommands
-    import i18n.cyrillic
     return I18nCommands(
                 input_dirs={
                     'front': os.path.join(cfg_common.ROOT, 'front'),
@@ -54,8 +53,7 @@ def i18n_command():
                     'iktomi-cms': 'ru',
                 },
                 mapping_file=cfg_common.I18N_MAPPING_FILE,
-                reference_dir=cfg_common.ROOT,
-                template_filter=i18n.cyrillic.template_filter)
+                reference_dir=cfg_common.ROOT)
 
 
 @LazyCli
