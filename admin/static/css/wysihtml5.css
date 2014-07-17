@@ -1,0 +1,34 @@
+.wysihtml5-toolbar a.btn[data-wysihtml5-command="objectLink"] { background-position: -200px; }
+.wysihtml5-toolbar a.btn[data-wysihtml5-command="createLinkAdvanced"] { background-position: -300px; }
+.wysihtml5-toolbar a.more-btn { background-position: -950px; }
+.wysihtml5-toolbar a.btn[data-wysihtml5-command="typography"] { background: url(../images/typo.svg) no-repeat 50% 50%; background-size: 20px; }
+.wysihtml5-toolbar a.btn[data-wysihtml5-command="actLink"] { background: url(../images/act.svg) no-repeat 50% 50%; background-size: 20px; }
+
+.create-link-dialog .w-buttons,
+.create-link-dialog .w-popup-stream-select{
+    display: inline;
+}
+.create-link-dialog .create-link-buttons {
+ float: right;
+ }
+
+.wysihtml5-toolbar a.more-btn ~ * {
+    display: none;
+}
+.create-link-dialog.more .w-popup-stream-select{
+    display: block;
+    }
+    .create-link-dialog.more .btn{
+        display: block;
+        font-size: 12px;
+        padding-left: 25px;
+        width: 0;
+        line-height: 25px;
+        float: none;
+        }
+    .create-link-dialog.more .more-btn{
+        display: none;
+        }
+    .create-link-dialog.more .create-link-buttons {
+        float: none;
+        }

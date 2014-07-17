@@ -1,0 +1,115 @@
+.wysihtml5 .replaceble-block{
+  display:block;
+  position: relative;
+  border: 1px solid #fff;
+  margin-right: 5px;
+  z-index: 1;
+  }
+  .wysihtml5 .replaceble-block[data-align=left]{
+    float: left;
+    width: 300px;
+    }
+  .wysihtml5 .replaceble-block[data-align=right]{
+    float: right;
+    width: 300px;
+    }
+  .wysihtml5 .replaceble-block[data-align=center]{
+    clear: both;
+    margin: 10px 0;
+    }
+  .wysihtml5 .replaceble-block:hover{
+    border-color: #aaa;
+    }
+  .wysihtml5 .replaceble-block iframe{
+    border: none;
+    outline: none;
+    display: block;
+    width: 450px;
+    }
+    .wysihtml5 .replaceble-block[data-align=center] iframe{
+      margin:auto;
+      }
+  .wysihtml5 .replaceble-block button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    visibility:hidden;
+    padding: 0;
+    text-align: center;
+    /*box-shadow: 0 0 5px #888;*/
+    opacity: 0;
+    -webkit-transition: opacity .4s, visibility 0s linear .4s;
+    -moz-transition: opacity .4s, visibility 0s linear .4s;
+    -o-transition: opacity .4s, visibility 0s linear .4s;
+    transition: opacity .4s, visibility 0s linear .4s;
+    }
+    .wysihtml5 .replaceble-block:hover button{
+      visibility: visible;
+      -webkit-transition: opacity .4s, visibility 0s linear;
+      -moz-transition: opacity .4s, visibility 0s linear;
+      -o-transition: opacity .4s, visibility 0s linear;
+      transition: opacity .4s, visibility 0s linear;
+      opacity: 1;
+    }
+  .wysihtml5 button.move-down,
+  .wysihtml5 button.move-up{
+    right: 35px;
+  }
+  .wysihtml5 button.move-left{
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    right: 100px;
+  }
+  .wysihtml5 button.move-center{
+    border-radius: 0px;
+    right: 80px;
+  }
+  .wysihtml5 button.move-right{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    right: 60px;
+  }
+  .wysihtml5 button.move-up{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    }
+  .wysihtml5 button.move-down{
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    top: 30px
+    }
+    .wysihtml5 button:hover{
+      color: #e44;
+      }
+    .wysihtml5 button.move-down:before{
+      content: '↓';
+      }
+    .wysihtml5 button.move-up:before{
+      content: '↑';
+      }
+    .wysihtml5 button.move-left:before{
+      content: '←';
+      }
+    .wysihtml5 button.move-right:before{
+      content: '→';
+      }
+    .wysihtml5 button.move-center:before{
+      content: 'Ξ';
+      }
+    .wysihtml5 button.remove:before{
+      content: "X";
+      }
+
+.text_trans .replaceble-block button{
+  display: none;
+  }
+
+
+
+

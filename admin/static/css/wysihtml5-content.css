@@ -1,0 +1,232 @@
+@import url("all_fonts.css");
+
+body
+div,
+p,
+ul,
+ol,
+table,
+dl,
+blockquote,
+pre,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: Arial, monospace, arial, sans-serif;
+}
+body{
+  padding: 10px;
+  box-sizing: border-box;
+  }
+
+code,
+pre {
+  font-family: monospace, sans-serif !important;
+}
+
+div,
+p,
+ul,
+ol,
+table,
+dl,
+blockquote,
+pre {
+  font-size: 15px !important;
+  line-height: 1.45em !important;
+}
+
+a {
+  color: #15c !important;
+  text-decoration: underline !important;
+}
+
+object,
+embed,
+video,
+img {
+  width: auto;
+  max-width: 100%;
+}
+video,
+img {
+  height: auto;
+}
+
+div,
+p,
+ul,
+ol,
+table,
+dl,
+blockquote,
+pre {
+  box-shadow: none !important;
+  background: none !important;
+  margin: 0;
+  margin-bottom: 15px;
+  border: none;
+}
+iframe,
+object,
+hr {
+  margin-bottom: 15px !important;
+}
+
+ul,
+ol {
+  padding-left: 2em !important;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  border: none;
+  margin: 2px !important;
+  padding: 0 !important;
+  padding-left: 2em !important;
+}
+dl dt { font-weight: bold; }
+dd { margin-left: 1em;}
+
+table {
+  border-collapse: collapse;
+  font-size: 1em !important;
+}
+table td {
+  border: 1px solid #ddd;
+  padding: 5px !important;
+  vertical-align: top;
+}
+table thead th,
+table thead td {
+  border-bottom: 2px solid #000 !important;
+  border-top: 2px solid #000 !important;
+  font-weight: bold !important;
+}
+code {
+  background-color: #d8d7d7 !important;
+}
+pre {
+  font-size: 90% !important;
+  background: #f8f8f8 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 3px !important;
+  padding: 1em !important;
+  white-space: pre;
+  overflow: auto;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #000;
+  background: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 37px !important;
+  line-height: 1.3em !important;
+  margin-bottom: 10px !important;
+  font-weight: normal;
+}
+h2 {
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 1em;
+}
+h3 {
+  font-size: 16px !important;
+  line-height: 1.2em !important;
+  margin-bottom: 10px !important;
+}
+h4 {
+  font-size: 15px !important;
+  line-height: 1.2em !important;
+  margin-bottom: 10px !important;
+}
+h5 {
+  font-size: 1em !important;
+  margin-bottom: 10px !important;
+}
+
+blockquote {
+  margin: 36px 0 36px 50px;
+  padding: 18px 0 18px 2em;
+  border-left: 6px solid #f82502;
+}
+blockquote ul {
+  padding: 0 !important;
+  }
+blockquote li {
+  list-style-type: none;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eaebec;
+  }
+blockquote li:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+  }
+
+abbr{
+  color: #060;
+  border-bottom: 1px dotted #060;
+}
+
+.replaceable-label{
+  position: absolute; 
+  bottom: 0;
+  left: 0;
+  right: 0px;
+  background: rgba(220,220,255,0.8) !important;
+  padding: 5px;
+  }
+
+ins.typo{
+  text-decoration: none;
+  background: #cfc;
+  }
+
+a[href^="model://"]{
+    color: #184 !important;
+    text-decoration: none !important;
+    border-bottom: 1px dashed #184;
+    }
+a[href^="model://doc/"]:after,
+a[href^="model://term/"]:after{
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-image: url(/cms-static/images/redactor_2x.png);
+    background-size: 625px;
+    vertical-align: top;
+    margin: 0 -2px;
+    }
+a[href^="model://doc/"]:after{ background-position: -462px; }
+a[href^="model://term/"]:after{ background-position: -437px; }
+
+iktomi_doclink{
+    float: right;
+    max-width: 250px;
+    margin-left: 5px !important;
+    }
+iktomi_doclink iframe,
+iktomi_doclink{
+    max-width: 250px;
+    }

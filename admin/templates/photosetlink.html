@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for_static('css/wysihtml5-content.css') }}">
+  <style>
+    body{
+      padding: 0; margin: 0;
+      
+      }
+    h1 {
+      font-size: 16px !important; 
+      background: #88e;
+      padding: 10px !important;
+      color: #fff;
+      }
+    a { cursor: default; }
+  </style>
+  </head>
+  <body>
+  {% if photo_set %}
+    <div style="overflow-x: scroll; white-space: nowrap">
+      {%- for photo in photo_set.photos -%}
+      <img src="{{ photo.image_medium.url }}" />
+      {%- endfor -%}
+    </div>
+    <div class="position: relative">
+      <p class="replaceable-label">{{ photo_set.title }}</p>
+    </div>
+  {% else %}
+    <h1>Фотоподборка удалена или не создана на данном языке</h1>
+  {% endif %}
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for_static('css/wysihtml5-content.css') }}">
+  <style>
+    body, html{
+      max-width: 250px;
+      }
+    body{
+      padding: 0; margin: 0;
+      background: #eef;
+      }
+    h1 {
+      font-size: 16px !important; 
+      background: #88e;
+      padding: 10px !important;
+      color: #fff;
+      }
+    a { cursor: default; }
+  </style>
+
+  </head>
+  <body>
+  {% if doclink_block %}
+    <h1>{{ doclink_block.title }}</h1>
+    <ul>
+    {% for link in doclink_block.links %}
+      <li><a href="javascript:void(0)">{{ link.get_title() }}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <h1>Блок ссылок удалён</h1>
+  {% endif %}
+  </body>
+</html>

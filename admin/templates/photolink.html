@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for_static('css/wysihtml5-content.css') }}">
+  <style>
+    body{
+      padding: 0; margin: 0;
+      background: #eef;
+      }
+    h1 {
+      font-size: 16px !important; 
+      background: #88e;
+      padding: 10px !important;
+      color: #fff;
+      }
+    a { cursor: default; }
+  </style>
+  </head>
+  <body>
+  {% if photo %}
+    <img src="{{ photo.image_medium.url }}" width="397" height="265" />
+    <div class="position: relative">
+      <p class="replaceable-label">{{ photo.title }}</p>
+    </div>
+  {% else %}
+    <h1>Фотография удалена или не создана на данном языке</h1>
+  {% endif %}
+  </body>
+</html>
