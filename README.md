@@ -15,4 +15,5 @@ Setup
           user; password is "demo_front".
 * `python manage.py db:create_tables`
 * `python manage.py db:init`
+* `python manage.py db:gen photos:30 photosets:10 docs:5`
 
