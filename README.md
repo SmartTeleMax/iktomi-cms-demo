@@ -16,4 +16,7 @@ Setup
 * `python manage.py db:create_tables`
 * `python manage.py db:init`
 * `python manage.py db:gen photos:30 photosets:10 docs:5`
+* for development server, set `SERVE_STATIC = True` in `./cfg_local.py`.
+* `python manage.py admin:serve`
+* Open http://localhost:8000/ in a browser. Default login/password are wheel/wheel.
 

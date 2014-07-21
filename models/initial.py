@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from models.admin import AdminUser, SectionRu
+from models.admin import AdminUser, SectionRu, FaceNewsRu
 
 
 def create_admin_user(db):
@@ -55,7 +55,23 @@ def create_news_sections(db):
 
     db.commit()
 
+def create_face_news(db):
+    ru = db.query(FaceNewsRu).first()
+    if ru is None:
+        ru = FaceNewsRu()
+        db.add(ru)
+        ru._create_versions()
+        db.flush()
+        en = ru._item_version('admin', 'en')
+        ru.has_unpublished_changes = en.has_unpublished_changes = False
+        if '_front_item' in ru.__dict__:
+            # XXX fix in _create_versions
+            del ru._front_item
+        ru._front_item.has_unpublished_changes = en._front_item.has_unpublished_changes = False
+        db.commit()
+
 
 def install(db):
     create_admin_user(db)
     create_news_sections(db)
+    create_face_news(db)

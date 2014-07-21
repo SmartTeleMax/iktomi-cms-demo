@@ -13,7 +13,8 @@ from PIL import ImageDraw
 from admin.environment import db_maker, file_manager
 from .vesna import phrase
 
-from models.admin import DocRu, PhotoRu, PhotoSetRu, SectionRu
+from models.admin import DocRu, PhotoRu, PhotoSetRu, SectionRu,\
+        FaceNewsRu, FaceNewsEn, DocEn
 from models.common.fields import ExpandableMarkup
 
 logger = logging.getLogger('generate')
@@ -157,6 +158,17 @@ def docs(db, count=30):
         en._copy_to_front()
 
         db.commit()
+
+    all_docs_ru = db.query(DocRu).all()
+    all_docs_en = db.query(DocEn).all()
+
+    face_ru = db.query(FaceNewsRu).one()
+    face_ru.docs_edit = _random_list(all_docs_ru, 3, 3)
+    face_ru.publish()
+
+    face_en = db.query(FaceNewsEn).one()
+    face_en.docs_edit = _random_list(all_docs_en, 3, 3)
+    face_en.publish()
 
 
 generators = {

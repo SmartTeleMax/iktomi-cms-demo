@@ -1,0 +1,57 @@
+{% if not ajax %}{% extends "base.html" %}{% endif %}
+
+{% macro entry(item, image=None, classname="") %}
+  <div class="entry {{ classname }}
+              {%- if not item -%} without_image{% endif %}">
+    <h3 class="hentry__title">
+      <a href="{{ url.events.item(id=item.id) }}">
+        {{- item.title -}}
+      </a>
+    </h3>
+
+    <div class="meta">
+      <time>
+        {{- lang.datetime(item.date) -}}
+      </time>
+    </div>
+
+    {%- if image -%}
+      <div class="pic">
+        <a href="{{ url.events.item(id=item.id) }}">
+          <img src="{{ image.url }}"
+               alt="{{ item.title }}"/>
+        </a>
+      </div>
+    {%- elif item.summary -%}
+      <div class="summary">{{ item.summary }}</div>
+    {%- endif -%}
+  </div>
+{% endmacro %}
+
+{% block content %}
+  {{ entry(main_news,
+           main_news.index_photo and main_news.index_photo.image_big,
+           classname="entry_wide") }}
+
+  <div class="cols">
+    {% for col in [0,1] %}
+      <div class="col">
+        {% for item in first_news[col::2] %}
+          {{ entry(main_news,
+                   main_news.index_photo and main_news.index_photo.image_big) }}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="earlier">
+    <h2>{% trans %}Earlier{% endtrans %}</h2>
+    {%- for col in [0,1] -%}
+      <div class="cols">
+        {%- for item in earlier_news[col::2] %}
+          {{- entry(main_news) }}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+{% endblock %}

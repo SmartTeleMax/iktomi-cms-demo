@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-from os import path
 from datetime import date, datetime
 from iktomi.utils import cached_property
 from jinja2 import Markup
@@ -58,4 +56,9 @@ class Context(object):
         if not getattr(item, 'public', True):
             return self._public_mark
         return ''
+
+    @cached_property
+    def sections(self):
+        db, models = self.env.db, self.env.models
+        return db.query(models.Section).all()
 

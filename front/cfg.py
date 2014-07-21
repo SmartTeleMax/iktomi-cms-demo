@@ -28,6 +28,7 @@ DATABASES = {
     'front': db_uri('demo_front'),
 }
 
+DEFAULT_CACHE_DURATION = 60 * 10
 DATABASE_PARAMS = {
     'pool_size': 10,
     'max_overflow': 50,

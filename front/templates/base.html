@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Iktomi demo</title>
+  <meta name="viewport" content="width=device-width"/>
+  <link rel="stylesheet" media="screen" href="{{ url_for_static('css/screen.css') }}">
+</head>
+<body>
+<div class="site">
+   <ul class="nav__ul">
+     <li><a href="{{ url.index }}" class="logo"></a></li>
+     <li><a href="{{ url.events }}">
+         {%- trans %}All news{% endtrans -%}
+     </a></li>
+     {% for s in context.sections %}
+       <li{% if section and section == s %} class="is-active"{% endif %}>
+         <a href="{{ url.events.by_section(section_slug=s.slug) }}">
+           {{- s.title -}}
+         </a>
+       </li>
+     {% endfor %}
+   </ul>
+
+   {% block content %}{% endblock %}
+</div>
+</body>
+</html>

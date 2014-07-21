@@ -52,13 +52,13 @@ class DocView(object):
         return env.models.Doc
 
     def get_reverse(self, env, data):
-        raise env.lang.events
+        return env.lang.root.events
 
     def _stream_reverse(self, env, data):
         reverse = self.get_reverse(env, data)
         section = getattr(data, 'section', None)
         if section is not None:
-            reverse = reverse.by_section(section=section.slug)
+            reverse = reverse.by_section(section_slug=section.slug)
         return reverse
 
     def _stream_url(self, env, data, page):
@@ -74,7 +74,7 @@ class DocView(object):
         if hasattr(data, 'section_slug'):
             data.section = _404 | env.db.query(Section)\
                                         .filter_by(slug=data.section_slug)\
-                                        .all()
+                                        .first()
             env.published_items += (data.section,)
 
         sections = env.db.query(Section).all()
@@ -90,7 +90,7 @@ class DocView(object):
         query = query.order_by(Model.date.desc())
 
         if data.section is not None:
-            query = query.filter(Model.sections.contains(data.doc_section))
+            query = query.filter(Model.sections.contains(data.section))
         return query
 
 
@@ -125,7 +125,6 @@ class DocView(object):
         item = _404 | docs_query.filter_by(id=data.id).first()
         env.published_items += (item,)
 
-        stream_url = self._stream_reverse(env, data).by_date(date=item.date)
         extra_media = item.photo_sets + item.photos
 
         body, replacements = collect_replacements(env, item, item.body)
@@ -135,7 +134,6 @@ class DocView(object):
                        if not x in replacements]
 
         return env.render_to_response(self.item_template, dict(
-            stream_url=stream_url,
             item=item,
             body=body,
             extra_media=extra_media,

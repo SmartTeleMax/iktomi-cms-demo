@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% macro entry(item, image=None, classname="") %}
+  <div class="entry {{ classname }}
+              {%- if not images -%} without_image{% endif %}">
+    <h3 class="hentry__title">
+      <a href="{{ url.events.item(id=item.id) }}">
+        {{- item.title -}}
+      </a>
+    </h3>
+
+    <div class="meta">
+      <time>
+        {{- lang.datetime(item.date) -}}
+      </time>
+    </div>
+
+    {%- if image -%}
+      <div class="pic">
+        <a href="{{ url.events.item(id=item.id) }}">
+          <img src="{{ image.url }}"
+               alt="{{ item.title }}"/>
+        </a>
+      </div>
+    {%- elif item.summary -%}
+      <div class="summary">{{ item.summary }}</div>
+    {%- endif -%}
+  </div>
+{% endmacro %}
+
+{% block content %}
+  {% if section %}
+    <h2>{{ section.title }}</h2>
+  {% else %}
+    <h2>{% trans %}All News{% endtrans %}</h2>
+  {% endif %}
+  {% for item in paginator.items %}
+    {{ entry(item,
+             item.index_photo and item.index_photo.image_big,
+             classname="entry_wide") }}
+  {% endfor %}
+{% endblock %}

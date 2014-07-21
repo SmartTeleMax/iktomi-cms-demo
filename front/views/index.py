@@ -5,7 +5,7 @@ def index(env, data):
     main_news = face_news.docs[0]
     first_news = face_news.docs[1:3]
 
-    query = env.db.query(m.MainDoc)\
+    query = env.db.query(m.Doc)\
                   .filter(~m.Doc.id.in_(main_ids))
     earlier_news =  query[:6]
     return env.render_to_response('index', dict(
