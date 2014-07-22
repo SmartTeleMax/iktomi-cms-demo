@@ -226,7 +226,7 @@
   var PhotoLinkPlugin = Object.append(
     Object.create(LinkPlugin), {
       tagName: 'IKTOMI_PHOTO',
-      widgetName: 'photos',
+      widgetName: 'photos_edit',
       commandName: 'photolink',
       // XXX show front version from front widget
       url: '/docs/admin/ru/photo-block/ID',
@@ -242,7 +242,7 @@
   var PhotoSetLinkPlugin = Object.append(
     Object.create(LinkPlugin), {
       tagName: 'IKTOMI_PHOTOSET',
-      widgetName: 'photo_sets',
+      widgetName: 'photo_sets_edit',
       commandName: 'photosetlink',
       // XXX show front version from front widget
       url: '/docs/admin/ru/photo-set-block/ID',
