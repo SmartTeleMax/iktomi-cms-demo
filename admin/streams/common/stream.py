@@ -5,7 +5,7 @@ from iktomi.cms.publishing.i18n_stream import *
 
 from functools import partial
 from admin.front_environment import call_with_front_env
-#from front.urls.for_object import url_for_object
+from front.urls.for_object import url_for_object
 from iktomi.cms.preview import PreviewHandler
 from iktomi.cms.publishing.stream_sortables import PublishSortForm, PublishSortAction
 from front import cfg as front_cfg
@@ -25,7 +25,9 @@ class PreviewHandler(PreviewHandler):
             url = self.item_url(env, data, item).as_url
             index = call_with_front_env(env, data, 
                     lambda e, d: e.lang.root.index.as_url)
-            domain = front_cfg.DOMAINS[0]
+            domain = (front_cfg.DOMAINS[0] if 
+                        front_cfg.DOMAINS else
+                        'localhost')
             return url.replace(index, 'http://{}/'.format(domain)
                                         if env.lang == 'ru' else 
                                       'http://{}.{}/'.format(env.lang, domain))
