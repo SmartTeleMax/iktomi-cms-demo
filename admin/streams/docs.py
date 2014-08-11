@@ -109,32 +109,32 @@ def ItemForm(models):
 
     fields = (
 
-        FieldBlock(u'Ядро', fields=[
+        #FieldBlock(u'Ядро', fields=[
 
-            SplitDateTimeField(
-                  'date',
-                  label=u'Дата и время публикации'),
+            #SplitDateTimeField(
+            #      'date',
+            #      label=u'Дата и время публикации'),
             title_field,
-            summary_field,
-            Field('body',
-                  conv=body_conv,
-                  widget=body_wysihtml5,
-                  label=u'Текст'),
-        ]),
+            #summary_field,
+            #Field('body',
+            #      conv=body_conv,
+            #      widget=body_wysihtml5,
+            #      label=u'Текст'),
+        #]),
 
-        media_block(models),
-        links_block(models),
+        #media_block(models),
+        #links_block(models),
 
-        FieldBlock(u'Разделы', fields=[
-            Field('sections',
-                  conv=convs.ListOf(
-                      convs.ModelChoice(model=models.Section)),
-                  widget=widgets.PopupFilteredSelect(),
-                  label=u'Разделы'),
-        ],
-        open_with_data=True),
+        #FieldBlock(u'Разделы', fields=[
+        #    Field('sections',
+        #          conv=convs.ListOf(
+        #              convs.ModelChoice(model=models.Section)),
+        #          widget=widgets.PopupFilteredSelect(),
+        #          label=u'Разделы'),
+        #],
+        #open_with_data=True),
 
-        editor_notes_block,
+        #editor_notes_block,
     )
 
 
