@@ -203,7 +203,7 @@ class DocLinkBlockHandler(GetAction):
 
 class Stream(I18nPublishStream):
 
-    actions = [
+    actions = I18nPublishStream.actions + [
         DocLinkBlockHandler(),
         PreviewHandler(),
         EditLogHandler(),

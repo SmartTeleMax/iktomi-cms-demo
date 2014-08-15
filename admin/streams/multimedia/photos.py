@@ -105,6 +105,7 @@ class FilterForm(BaseFilter):
 
 class Stream(I18nPublishStream):
 
-    actions = [StreamImageUploadHandler(),
+    actions = I18nPublishStream.actions + [
+               StreamImageUploadHandler(),
                EditLogHandler()]
 

@@ -38,6 +38,7 @@ class FilterForm(BaseFilter):
 
 class Stream(I18nPublishStream):
 
-    actions = [PublishSortAction(),
-               EditLogHandler()]
+    actions = I18nPublishStream.actions + [
+                    PublishSortAction(),
+                    EditLogHandler()]
 
