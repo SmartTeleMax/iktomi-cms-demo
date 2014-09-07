@@ -115,7 +115,7 @@ def ItemForm(models):
             #      'date',
             #      label=u'Дата и время публикации'),
             title_field,
-            #summary_field,
+            summary_field,
             #Field('body',
             #      conv=body_conv,
             #      widget=body_wysihtml5,
