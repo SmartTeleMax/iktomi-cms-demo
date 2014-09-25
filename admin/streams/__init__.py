@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from iktomi.cms.stream_app import Streams
+from admin.loners import loners
 
 streams_tree = [
     'admins',
@@ -15,3 +16,4 @@ streams_tree = [
 
 
 streams = Streams.from_tree(streams_tree, __package__)
+streams.update(loners)

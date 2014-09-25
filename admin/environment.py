@@ -24,7 +24,6 @@ from webob.exc import HTTPSeeOther
 import models
 from . import cfg
 from .streams import streams
-from .loners import loners
 from .views import packer
 
 
@@ -60,7 +59,6 @@ class AdminEnvironment(web.AppEnvironment):
     file_manager = file_manager
     login = None
     streams = streams
-    loners = loners
     models = models
     lang = 'ru'
 

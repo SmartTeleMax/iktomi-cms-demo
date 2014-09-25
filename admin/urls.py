@@ -49,7 +49,6 @@ dynamic_app = \
             )
         ),
         streams.streams.to_app(),
-        loners.loners.to_app(),
         web.prefix('/_front/<any(admin,front):version>/<any(en,ru):lang>', name='front') | 
             front_environment | front_app,
 
