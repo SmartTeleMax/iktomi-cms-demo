@@ -122,7 +122,7 @@ def ItemForm(models):
             #      label=u'Текст'),
         #]),
 
-        #media_block(models),
+        media_block(models),
         #links_block(models),
 
         #FieldBlock(u'Разделы', fields=[
