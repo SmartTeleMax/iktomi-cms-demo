@@ -62,7 +62,7 @@ def media_block(models):
                    stream_name="multimedia.photo_sets"),
         ]
     return FieldBlock(u'Медиа-элементы', fields=fields,
-                      classname='collapsable',
+                      widget=FieldBlock.widget(widget_name='CollapsableFieldBlock'),
                       open_with_data=True)
 
 
