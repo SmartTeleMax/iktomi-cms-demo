@@ -61,9 +61,11 @@ def media_block(models):
         MediaField('photo_sets_edit', models.PhotoSet, u'Фотоподборка',
                    stream_name="multimedia.photo_sets"),
         ]
-    return FieldBlock(u'Медиа-элементы', fields=fields,
-                      widget=FieldBlock.widget(widget_name='CollapsableFieldBlock'),
-                      open_with_data=True)
+    return FieldBlock(u'Медиа-элементы',
+                      fields=fields,
+                      widget=widgets.CollapsableFieldBlock(open_with_data=True),
+                      name="media_block",
+                      )
 
 
 
@@ -86,11 +88,12 @@ def links_block(models):
               widget=FieldList.widget(render_type='full-width'),
               order=True),
     ],
+    name="links_block",
+    widget=widgets.CollapsableFieldBlock(open_with_data=True),
     hint=jinja2.Markup(
          u'<strong>Сохраните документ</strong>, чтобы сделать '
          u'добавленные блоки ссылок доступными '
-         u'в текстовом редакторе. '),
-    open_with_data=True)
+         u'в текстовом редакторе. '))
 
 
 
@@ -123,7 +126,7 @@ def ItemForm(models):
         #]),
 
         media_block(models),
-        #links_block(models),
+        links_block(models),
 
         #FieldBlock(u'Разделы', fields=[
         #    Field('sections',

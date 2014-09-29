@@ -137,6 +137,7 @@ def LinksField(models, name, model, label=u'Ссылки', hint=None):
                   widget=widgets.HiddenInput),
             Field('ref_title',
                   conv=convs.Char(convs.length(0, 500)),
+                  widget=widgets.TextInput(),
                   label=u'Текст ссылки'),
         ],
         trigger_field='_kind',
