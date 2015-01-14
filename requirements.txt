@@ -11,4 +11,4 @@ https://github.com/SmartTeleMax/iktomi-cms/archive/reactjs.zip
 lxml==3.3.5
 python-memcached==1.53
 six==1.7.3
-PyReact==0.4.0
+PyReact==0.5.2
