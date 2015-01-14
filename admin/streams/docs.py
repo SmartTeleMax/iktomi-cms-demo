@@ -20,6 +20,7 @@ permissions = {'editor': 'rwxcdp'}
 
 Model = 'Doc'
 title = u'Материалы'
+live_search = True
 limit = 20
 
 
@@ -146,18 +147,18 @@ def FilterForm(models):
 
     fields = [
         StateSelectField(),
-        IdField(),
-        Field('sections',
-              conv=convs.ModelChoice(model=models.Section),
-              widget=widgets.PopupFilteredSelect(),
-              label=u'Sections'
-            ),
-        DateFromTo('date'),
-        SortField('sort',
-                  choices=(('id', 'id'),
-                           ('title', 'title'),
-                           ('date', 'date')),
-                  initial='-date'),
+        #IdField(),
+        #Field('sections',
+        #      conv=convs.ModelChoice(model=models.Section),
+        #      widget=widgets.PopupFilteredSelect(),
+        #      label=u'Sections'
+        #    ),
+        #DateFromTo('date'),
+        #SortField('sort',
+        #          choices=(('id', 'id'),
+        #                   ('title', 'title'),
+        #                   ('date', 'date')),
+        #          initial='-date'),
         SearchField('title',
                     label=u'Заголовок'),
     ]
