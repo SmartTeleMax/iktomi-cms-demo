@@ -129,14 +129,15 @@ def ItemForm(models):
         media_block(models),
         links_block(models),
 
-        #FieldBlock(u'Разделы', fields=[
-        #    Field('sections',
-        #          conv=convs.ListOf(
-        #              convs.ModelChoice(model=models.Section)),
-        #          widget=widgets.PopupFilteredSelect(),
-        #          label=u'Разделы'),
-        #],
-        #open_with_data=True),
+        FieldBlock(u'Разделы', fields=[
+            Field('sections',
+                  conv=convs.ListOf(
+                      convs.ModelChoice(model=models.Section)),
+                  widget=widgets.PopupFilteredSelect(),
+                  label=u'Разделы'),
+        ],
+                                            # XXX is open_with_data used anywhere?
+        widget=widgets.CollapsableFieldBlock(open_with_data=True)),
 
         #editor_notes_block,
     )
@@ -148,11 +149,11 @@ def FilterForm(models):
     fields = [
         StateSelectField(),
         #IdField(),
-        #Field('sections',
-        #      conv=convs.ModelChoice(model=models.Section),
-        #      widget=widgets.PopupFilteredSelect(),
-        #      label=u'Sections'
-        #    ),
+        Field('sections',
+              conv=convs.ModelChoice(model=models.Section),
+              widget=widgets.PopupFilteredSelect(),
+              label=u'Разделы'
+            ),
         #DateFromTo('date'),
         #SortField('sort',
         #          choices=(('id', 'id'),
@@ -162,6 +163,11 @@ def FilterForm(models):
         SearchField('title',
                     label=u'Заголовок'),
     ]
+
+    def filter_by__sections(self, query, field, value):
+        Doc = self.env.models.Doc
+        cond = getattr(Doc, field.name).contains(value)
+        return query.filter(cond)
 
     def filter_by__title(self, query, field, value):
         Doc = self.env.models.Doc
