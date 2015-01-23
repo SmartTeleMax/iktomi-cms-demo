@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from iktomi.forms import Field
+from iktomi.forms.form_json import Field
 from iktomi.cms.forms import ModelForm
 from iktomi.cms.publishing.i18n_loner import I18nPublishLoner
 from iktomi.cms.edit_log import EditLogHandler

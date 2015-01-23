@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 import jinja2
-from iktomi.forms.form_json import Field
+from iktomi.forms.form_json import *
+from iktomi.unstable.forms.files_json import *
 from iktomi.cms.forms.fields import *
 from collections import OrderedDict
 

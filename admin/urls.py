@@ -38,6 +38,7 @@ dynamic_app = \
                  h.release_lock),
 
             web.match('/_tmp_img', 'load_tmp_image') | h.load_tmp_image,
+            web.match('/_tmp_file', 'load_tmp_file') | h.load_tmp_file,
             Rule('/_post_note', h.post_note),
         ),
         web.prefix('/tray') | web.cases(

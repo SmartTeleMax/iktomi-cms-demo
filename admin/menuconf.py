@@ -29,6 +29,7 @@ def dashboard(env):
                 DashI18nStream('docs'),
                 DashI18nStream('sections'),
                 DashI18nStream('terms'),
+                DashI18nStream('files'),
             ]),
             DashCol(u'Мультимедиа', items=[
                 DashI18nStream('multimedia.photos'),

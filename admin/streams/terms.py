@@ -50,6 +50,7 @@ class FilterForm(BaseFilter):
     ]
 
 
+
 class Stream(I18nPublishStream):
 
     actions = I18nPublishStream.actions + [

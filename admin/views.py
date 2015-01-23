@@ -21,6 +21,7 @@ index = IndexHandler(dashboard)
 index.func_name = 'index' # XXX
 
 load_tmp_image = FileUploadHandler()
+load_tmp_file = FileUploadHandler()
 publish_queue = PublishQueue(streams)
 
 
