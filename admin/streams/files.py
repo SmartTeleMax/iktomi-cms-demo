@@ -47,7 +47,7 @@ def ItemForm(models):
         TitleField('title'),
         AjaxFileField('file',
                       widget=widgets.AjaxFileInput(upload_url='/_tmp_file'),
-                      #conv=AjaxFileField.conv(validate_format),
+                      conv=AjaxFileField.conv(validate_format),
                       label=u'Файл'),
         Field('file_format',
               conv=convs.EnumChoice(
