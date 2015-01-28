@@ -7,6 +7,7 @@ streams_tree = [
     'admins',
     'docs',
     'sections',
+    'files',
     ['multimedia',
         'photos',
         'photo_sets',

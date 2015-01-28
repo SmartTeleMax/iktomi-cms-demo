@@ -5,6 +5,7 @@ from .media import *
 from .docs import *
 from .terms import *
 from .constructor import *
+from .files import *
 
 __all__ = ['model_factories']
 
