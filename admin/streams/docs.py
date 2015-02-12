@@ -115,9 +115,9 @@ def ItemForm(models):
 
         #FieldBlock(u'Ядро', fields=[
 
-            #SplitDateTimeField(
-            #      'date',
-            #      label=u'Дата и время публикации'),
+            SplitDateTimeField(
+                  'date',
+                  label=u'Дата и время публикации'),
             title_field,
             summary_field,
             #Field('body',
@@ -135,6 +135,10 @@ def ItemForm(models):
                       convs.ModelChoice(model=models.Section)),
                   widget=widgets.PopupFilteredSelect(),
                   label=u'Разделы'),
+            Field('on_main',
+                  conv=convs.Bool(),
+                  widget=widgets.CheckBox(),
+                  label=u"Публиковать на главной странице"),
         ],
                                             # XXX is open_with_data used anywhere?
         widget=widgets.CollapsableFieldBlock(open_with_data=True)),

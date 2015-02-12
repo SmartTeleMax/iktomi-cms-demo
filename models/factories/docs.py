@@ -5,7 +5,8 @@ from sqlalchemy import ForeignKey, desc
 from sqlalchemy.orm import relationship, deferred
 from sqlalchemy.ext.orderinglist import ordering_list
 from ..common.fields import (Column, Integer, String, DateTime,
-        Text, MediumText, Html, ExpandableHtml, ExpandableMarkup)
+        Text, MediumText, Html, ExpandableHtml, ExpandableMarkup,
+        Boolean)
 from ..common.properties import FilteredProperty
 from ..common.fields import editable_ordered_relation
 from .base import register_i18n_model, register_m2m_model
@@ -97,6 +98,8 @@ def Doc(models):
     sections = relationship(
             models.Section,
             secondary=models.Doc_Section.__table__)
+
+    on_main = Column(Boolean, nullable=False, default=True)
 
     __mapper_args__ = {'order_by': desc(date)}
 
