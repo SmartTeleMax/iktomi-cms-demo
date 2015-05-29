@@ -35,6 +35,7 @@ def dashboard(env):
                 DashI18nStream('multimedia.photos'),
                 DashI18nStream('multimedia.photo_sets'),
                 DashI18nStream('multimedia.photo_sources'),
+                DashI18nStream('multimedia.galleries'),
             ])
         ]),
 

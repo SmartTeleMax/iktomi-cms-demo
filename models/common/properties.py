@@ -63,9 +63,9 @@ class OrderColumnProperty(ColumnProperty):
 
 
 class ResizeCropUpper(Resizer):
-    def transformations(self, img, size):
-        sw, sh = img.size
-        tw, th = size
+    def transformations(self, size, target_size):
+        sw, sh = size
+        tw, th = target_size
         if not self.expand and sw<=tw and sh<=th:
             return []
         transforms = []

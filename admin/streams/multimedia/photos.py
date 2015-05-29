@@ -67,10 +67,11 @@ def ItemForm(models):
                 required=True,
                 show_thumbnail=False,
                 show_size=False,
-                label = u'Фото в исходном разрешении'),
+                widget=widgets.AjaxImageInput(allow_upload=True),
+                label=u'Фото в исходном разрешении'),
             AjaxImageField(
                 'image_big',
-                widget=AjaxImageField.widget(classname="no-upload"),
+                widget=AjaxImageField.widget(classname="no-upload", show_image=True),
                 label=u'Большой размер'),
             LowResImageField(
                 'image_medium',
@@ -78,10 +79,9 @@ def ItemForm(models):
             LowResImageField(
                 'image_tiny',
                 label=u'Маленький размер'),
-
             AjaxImageField(
                 'image_small',
-                widget=AjaxImageField.widget(classname="no-upload"),
+                widget=AjaxImageField.widget(classname="no-upload", show_image=True),
                 label=u'Квадратная обрезка'),
         ])
     )
