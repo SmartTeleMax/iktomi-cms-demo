@@ -16,7 +16,7 @@ permissions = {'events-editor': 'rwxcdp'}
 title = u'Файлы'
 list_fields = ListFields(
     ListField('date', u'Дата', width='15%',
-              transform = lambda obj: obj.strftime('%d.%m.%Y')),
+              transform = lambda obj: (obj.strftime('%d.%m.%Y')) if obj else ''),
     ('title', u'Заголовок'),
 )
 limit = 20
