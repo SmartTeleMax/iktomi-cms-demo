@@ -4,7 +4,7 @@ from iktomi.cms.edit_log import EditLogHandler
 from admin.streams.common.stream import I18nPublishStream,\
         PreviewHandler, FilterForm as BaseFilter, ListFields
 from admin.streams.common.fields import Field, StateSelectField, \
-        IdField, SortField, TitleField
+        IdField, SortField, TitleField, FieldList, FieldSet
 from admin.streams.common import i18n_class_factory, convs, widgets
 
 
@@ -23,8 +23,7 @@ list_fields = ListFields(('title', u'Термин'),
 def ItemForm(models):
 
     fields = [
-        TitleField('title', max_length=100, unique=True,
-                   label=u'Термин'),
+        TitleField('title', max_length=100, unique=True, label=u'Термин'),
         Field('summary',
               conv=convs.Html(required=True,
                               allowed_elements=convs.Html.allowed_elements
@@ -36,6 +35,18 @@ def ItemForm(models):
               widget=widgets.WysiHtml5(),
               label=u'Текст'),
     ]
+    
+    if models.db == 'admin':
+        fields.append(
+                FieldList('synonyms',
+                          order=False,
+                          field=Field('title',
+                                      initial='test',
+                                      conv=convs.Char(convs.length(0, 10000),
+                                                      required=True),
+                                      widget=widgets.TextInput(classname='big')),
+                          label=u'Синонимы и аббревиатуры (для автоопределения)'),
+        )
 
 
 class FilterForm(BaseFilter):

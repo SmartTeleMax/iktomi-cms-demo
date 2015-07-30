@@ -11,7 +11,9 @@ streams_tree = [
     ['multimedia',
         'photos',
         'photo_sets',
-        'photo_sources'],
+        'photo_sources',
+        'galleries'
+     ],
     'terms',
 ]
 

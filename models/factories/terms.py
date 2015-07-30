@@ -3,6 +3,8 @@ from sqlalchemy import ForeignKey
 from ..common.fields import (Column, Integer, String, Text)
 from .base import register_i18n_model
 from iktomi.db.sqla.types import Html
+from sqlalchemy.orm import deferred
+from sqlalchemy import ForeignKey, PickleType
 
 
 @register_i18n_model('ModelWithStateLanguage')
@@ -18,6 +20,9 @@ def Term(models):
     summary = Column(Html(Text), nullable=False, default='')
     body = Column(Html(Text), nullable=True)
 
+    if models.db=='admin':
+        synonyms = deferred(Column('synonyms',
+                            PickleType, nullable=False, default=list))
     def __unicode__(self):
         if self.id is None:
             return u'Новый термин глоссария'

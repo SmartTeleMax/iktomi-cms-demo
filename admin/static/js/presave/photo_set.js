@@ -4,7 +4,7 @@ var CheckPhotoOrder = new Class({
   confirm_text: 'Вы проверили сортировку фотографий?',
 
   get_widget: function(){
-    return $(this.frm.id + '-photos_edit').retrieve('widget');
+    return $(this.frm.id).retrieve('widget');
   },
 
   confirm_rule: function(){

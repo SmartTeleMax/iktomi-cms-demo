@@ -292,5 +292,5 @@ class LowResImageField(AjaxImageField):
     conv = AjaxImageField.conv(autocrop=True)
     widget = AjaxImageField.widget(classname="no-upload")
 
-    def accept(self):
-        return AjaxImageField.accept(self)
+    def accept(self, value):
+        return AjaxImageField.accept(self, value)
