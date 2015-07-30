@@ -71,6 +71,7 @@ def _set_random_stage(db, item, updater=None):
         item.state = item._front_item.state = item.PRIVATE
         if choice((True, True, True, False,)):
             item.state = item._front_item.state = item.PUBLIC
+    item.has_unpublished_changes = False
     db.flush()
 
 
