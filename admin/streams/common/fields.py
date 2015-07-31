@@ -202,8 +202,8 @@ class TabbedFieldSet(FieldSet):
         if field.trigger_field:
             trigger = field.get_field(field.trigger_field)
             try:
-                return int(field.form.raw_data[trigger.input_name])
-            except (ValueError, KeyError):
+                return int(field.raw_value[trigger.input_name])
+            except (ValueError, KeyError, TypeError):
                 if value[field.trigger_field] is not None:
                     return value[field.trigger_field]
                 return 0
@@ -248,10 +248,12 @@ class TabbedFieldSet(FieldSet):
             result[field.name] = field.get_initial()
         return self.conv.to_python_default(result)
 
-    def accept(self, roles=None):
-        if 'w' not in self.perm_getter.get_perms(self):
-            raise convs.SkipReadonly
-        result = self.python_data
+    def accept(self, raw_value):
+        if not isinstance(raw_value, dict):
+            raw_value = {} # XXX
+        self.raw_value = raw_value
+
+        result = dict(self.python_data)
 
         active_fields = self.tabbed_fields[self.active_tab]['fields']
         active_fields += self.common_fields
@@ -261,7 +263,10 @@ class TabbedFieldSet(FieldSet):
             if field.writable:
                 if self.trigger_field and self.use_trigger:
                     if field.name in active_fields:
-                        result.update(field.accept())
+                        value = self.raw_value.get(field.name) \
+                                    if not isinstance(field, FieldBlock) \
+                                    else self.raw_value
+                        result.update(field.accept(value))
                     else:
                         # XXX field blocks will not work!
                         result[field.name] = None

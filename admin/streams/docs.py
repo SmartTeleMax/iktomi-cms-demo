@@ -65,9 +65,8 @@ def media_block(models):
     return FieldBlock(u'Медиа-элементы',
                       fields=fields,
                       widget=widgets.CollapsableFieldBlock(open_with_data=True),
-                      name="media_block",
+                      #name="media_block", # XXX breaks FieldBlocks
                       )
-
 
 
 def links_block(models):
@@ -89,7 +88,7 @@ def links_block(models):
               widget=FieldList.widget(render_type='full-width'),
               order=True),
     ],
-    name="links_block",
+    #name="links_block",
     widget=widgets.CollapsableFieldBlock(open_with_data=True),
     hint=jinja2.Markup(
          u'<strong>Сохраните документ</strong>, чтобы сделать '
