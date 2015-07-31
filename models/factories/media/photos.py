@@ -66,7 +66,7 @@ def Photo(models):
                         # apply brightness only to image sizes filled directly
                         # from the original image
                         enhancements=[(ImageEnhance.Brightness, 1.1)],
-                        image_sizes=(1024, 632))
+                        image_sizes=(800, 494))
 
     image_medium_name = Column(VarBinary(250), nullable=False)
     image_medium = ReplicatedImageProperty(image_medium_name,

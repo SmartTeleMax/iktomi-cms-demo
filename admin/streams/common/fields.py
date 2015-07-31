@@ -282,6 +282,7 @@ def CommonFieldBlock(*args, **kwargs):
             u"полей для одного языка<br/> обновит данные "
             u"для всех языков.")
     kwargs.setdefault('hint', hint)
+    kwargs.setdefault('widget', widgets.CollapsableFieldBlock(open_with_data=True))
     return FieldBlock(*args, **kwargs)
 
 
