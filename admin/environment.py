@@ -130,7 +130,13 @@ class AdminEnvironment(web.AppEnvironment):
     
     @storage_cached_property
     def object_tray_model(storage):
-        return storage.models.ObjectTray
+        return storage.models_.admin.ObjectTray
+
+    def __init__(self, *args, **kwargs):
+        web.AppEnvironment.__init__(self, *args, **kwargs)
+        # XXX bad naming!!
+        self.models_ = self.models
+
 
 @web.request_filter
 def environment(env, data, next_handler):
