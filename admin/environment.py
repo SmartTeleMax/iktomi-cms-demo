@@ -20,6 +20,7 @@ from iktomi.cms.item_lock import ItemLock
 from i18n.translation import get_translations
 from context import Context
 from webob.exc import HTTPSeeOther
+from iktomi.cms.models.tray import ObjectTray
 
 import models
 from . import cfg
@@ -77,6 +78,7 @@ class AdminEnvironment(web.AppEnvironment):
     @storage_property
     def render_to_string(storage):
         return storage.template.render
+
     @storage_property
     def render_to_response(storage):
         return storage.template.render_to_response
@@ -125,6 +127,10 @@ class AdminEnvironment(web.AppEnvironment):
     @storage_method
     def get_edit_url(storage, x):
         return streams.get_edit_url(storage, x)
+    
+    @storage_cached_property
+    def object_tray_model(storage):
+        return storage.models.ObjectTray
 
 @web.request_filter
 def environment(env, data, next_handler):

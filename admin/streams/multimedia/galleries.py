@@ -32,6 +32,7 @@ def ItemForm(models):
                 fields=[
                   TitleField('title', max_length=100, label=u"Заголовок" ),
                   AjaxImageField('image',
+                                 required=True,
                                  show_thumbnail=False,
                                  upload_url="/image_upload",
                                  widget=AjaxImageField.widget(allow_upload=True),

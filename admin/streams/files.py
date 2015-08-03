@@ -10,6 +10,7 @@ from admin.streams.common.fields import Field, TitleField, \
         DateFromTo, StateSelectField, IdField, SortField
 from admin.streams.common import i18n_class_factory, convs, widgets
 from admin.streams.common.fields import AjaxFileField
+from iktomi.cms.edit_log import EditLogHandler
 
 permissions = {'events-editor': 'rwxcdp'}
 
@@ -84,5 +85,7 @@ class FilterForm(BaseFilter):
         return query.filter(self.model.title.contains(value))
 
 
-Stream = I18nPublishStream
+class Stream(I18nPublishStream):
 
+    actions = I18nPublishStream.actions + [
+               EditLogHandler()]
