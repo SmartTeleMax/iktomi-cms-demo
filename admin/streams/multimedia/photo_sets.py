@@ -2,7 +2,7 @@
 from iktomi.cms.forms import ModelForm
 from iktomi.cms.stream import FilterForm as BaseFilter, ListFields, \
         ListField
-from iktomi.cms.edit_log import EditLogHandler
+from iktomi.cms.edit_log.views import EditLogHandler
 from admin.streams.common.stream import I18nPublishStream#, PreviewHandler
 from admin.streams.common.fields import Field, TitleField, \
         SplitDateTimeField, DateFromTo, StateSelectField, IdField, SortField,\

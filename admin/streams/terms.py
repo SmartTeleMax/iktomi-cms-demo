@@ -1,6 +1,6 @@
 # -*- coding: utf-8 --
 from iktomi.cms.forms import ModelForm
-from iktomi.cms.edit_log import EditLogHandler
+from iktomi.cms.edit_log.views import EditLogHandler
 from admin.streams.common.stream import I18nPublishStream,\
         PreviewHandler, FilterForm as BaseFilter, ListFields
 from admin.streams.common.fields import Field, StateSelectField, \

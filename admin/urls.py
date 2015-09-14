@@ -1,18 +1,22 @@
 # -*- coding: utf8 -*-
 from webob.exc import HTTPNotFound, HTTPMovedPermanently
-from iktomi.cms.views import auth_required
+from iktomi.cms.auth.views import auth_required
 from iktomi import web
 from iktomi.web.filters import static_files, method
-from .environment import environment, auth, static
 from iktomi.web.shortcuts import Rule
 from iktomi.cms.flashmessages import flash_message_handler
+from iktomi.cms.ajax_file_upload import FileUploadHandler
 from admin.front_environment import front_environment
+from admin.environment import environment, auth, static, file_manager
 from front.urls import app_cases
 
-from . import cfg, streams, loners, views as h
+from . import cfg, streams, views as h
 
 
 front_app = web.cases(web.namespace('en'), web.namespace('ru')) | app_cases
+
+load_tmp_file = FileUploadHandler(file_manager) # XXX both views are identical?
+load_tmp_image = FileUploadHandler(file_manager)
 
 
 dynamic_app = \
@@ -29,27 +33,18 @@ dynamic_app = \
     auth | auth_required |
     web.cases(
         Rule('/', h.index, method='GET'),
-        method('POST') | web.cases(
-            Rule('/_update_lock/<string:item_id>/<string:edit_session>',
-                 h.update_lock),
-            Rule('/_force_lock/<string:item_id>',
-                 h.force_lock),
-            Rule('/_release_lock/<string:item_id>/<string:edit_session>',
-                 h.release_lock),
 
-            web.match('/_tmp_img', 'load_tmp_image') | h.load_tmp_image,
+        h.item_lock_view.app,
+        h.tray_view.app,
+
+        method('POST') | web.cases(
+            web.match('/_tmp_img', 'load_tmp_file') | load_tmp_file,
+            web.match('/_tmp_img', 'load_tmp_image') | load_tmp_image,
             Rule('/_post_note', h.post_note),
         ),
-        web.prefix('/tray') | web.cases(
-            Rule('/<int:tray>', h.tray_view.tray),
-            web.prefix('/_') | web.method('POST', strict=True) | web.cases(
-                Rule('/put', h.tray_view.put_to_tray),
-                Rule('/user/put', h.tray_view.put_to_user_tray),
-                Rule('/delete', h.tray_view.delete_from_tray),
-            )
-        ),
+
         streams.streams.to_app(),
-        loners.loners.to_app(),
+
         web.prefix('/_front/<any(admin,front):version>/<any(en,ru):lang>', name='front') | 
             front_environment | front_app,
 

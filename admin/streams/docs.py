@@ -3,14 +3,14 @@ from iktomi.cms.forms import ModelForm
 from iktomi.cms.stream import FilterForm as BaseFilter, ListFields, \
         ListField
 from iktomi.cms.stream_actions import GetAction
-from iktomi.cms.edit_log import EditLogHandler
+from iktomi.cms.edit_log.views import EditLogHandler
+from iktomi.cms.editor_notes.fields import EditorNoteField
 from iktomi import web
 from admin.streams.common.stream import I18nPublishStream, PreviewHandler
 from admin.streams.common.fields import Field, TitleField,\
         SplitDateTimeField, DateFromTo,\
         StateSelectField, IdField, SortField, FieldBlock, \
-        FieldSet, FieldList, LinksField, EditorNoteField, \
-        SearchField
+        FieldSet, FieldList, LinksField, SearchField
 from admin.streams.common import i18n_class_factory, convs, widgets
 from admin.streams.docs_html import body_conv, body_wysihtml5
 from models.admin import EditorNote, WithState

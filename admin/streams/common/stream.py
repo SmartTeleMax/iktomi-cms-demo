@@ -23,13 +23,13 @@ class PreviewHandler(PreviewHandler):
     def external_url(self, env, data, item):
         if getattr(item, 'public', True):
             url = self.item_url(env, data, item).as_url
-            index = call_with_front_env(env, data, 
+            index = call_with_front_env(env, data,
                     lambda e, d: e.lang.root.index.as_url)
-            domain = (front_cfg.DOMAINS[0] if 
+            domain = (front_cfg.DOMAINS[0] if
                         front_cfg.DOMAINS else
                         'localhost')
             return url.replace(index, 'http://{}/'.format(domain)
-                                        if env.lang == 'ru' else 
+                                        if env.lang == 'ru' else
                                       'http://{}.{}/'.format(env.lang, domain))
 
 

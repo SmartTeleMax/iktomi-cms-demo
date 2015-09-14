@@ -8,7 +8,7 @@ from functools import partial
 from models.admin import AdminUser, DraftForm, EditLog
 from iktomi.templates import Template, BoundTemplate as BaseBoundTemplate
 from iktomi.templates.jinja2 import TemplateEngine
-from iktomi.cms.views import AdminAuth
+from iktomi.cms.auth.views import AdminAuth
 from iktomi import web
 from iktomi.web.filters import static_files
 from iktomi.db import sqla

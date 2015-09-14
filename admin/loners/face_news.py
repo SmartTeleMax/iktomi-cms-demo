@@ -2,7 +2,7 @@
 from iktomi.forms import Field
 from iktomi.cms.forms import ModelForm
 from iktomi.cms.publishing.i18n_loner import I18nPublishLoner
-from iktomi.cms.edit_log import EditLogHandler
+from iktomi.cms.edit_log.views import EditLogHandler
 from admin.streams.common import convs, widgets, i18n_class_factory
 from admin.streams.common.stream import PreviewHandler
 from admin.front_environment import call_with_front_env
