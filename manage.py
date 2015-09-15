@@ -1,6 +1,7 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 import os, sys, logging
+from importlib import import_module
 import cfg_common
 
 import iktomi
@@ -28,7 +29,13 @@ def db_command():
     from models import initial
     from iktomi.cli import sqla
     from models.generate import generators
-    return sqla.Sqla(db_maker, initial=initial.install, generators=generators)
+    return sqla.Sqla(
+        db_maker,
+        metadata={name: import_module('models.'+name).metadata
+                  for name in DATABASES},
+        initial=initial.install,
+        generators=generators,
+    )
 
 
 @LazyCli
