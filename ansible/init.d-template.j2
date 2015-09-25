@@ -1,0 +1,60 @@
+#!/bin/bash
+
+APP_USER=vagrant
+SUDO="sudo -u $APP_USER"
+PYTHON={{ python }}
+RUN_DIR=/run/iktomi-cms-demo
+MANAGE=/vagrant/manage.py
+
+
+function start {
+	APP=$1
+	echo -n "Starting $APP ... "
+	if $SUDO $PYTHON $MANAGE $APP\_fcgi:start --daemonize; then
+		echo "OK."
+	else
+		echo "Failed."
+	fi
+	return $?
+}
+
+function stop {
+	APP=$1
+	echo -n "Stopping $APP ... "
+	if $SUDO $PYTHON $MANAGE $APP\_fcgi:stop; then
+		echo "OK."
+	else
+		echo "Failed."
+	fi
+	return $?
+}
+
+function restart {
+	APP=$1
+	stop $APP && start $APP
+	return $?
+}
+
+
+if [ ! -d "$RUN_DIR" ]; then
+	mkdir "$RUN_DIR"
+fi
+chown $APP_USER "$RUN_DIR"
+
+case $1 in
+	start)
+		start admin && start front
+		exit $?
+		;;
+	stop)
+		stop admin && stop front
+		exit $?
+		;;
+	restart)
+		restart admin && restart front
+		exit $?
+		;;
+	*)
+		echo "Usage $0 start|stop|restart"
+		exit -1
+esac

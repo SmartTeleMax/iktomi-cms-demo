@@ -1,0 +1,101 @@
+- name: Common packages
+  hosts: all
+  sudo: yes
+  tasks:
+
+  #- apt: update_cache=yes
+
+  - apt: name={{ item }} state=latest
+    with_items:
+      - nginx
+      - mysql-server
+      - libmysqlclient-dev
+      - libjpeg-dev
+      - libxml2-dev 
+      - libxslt-dev
+
+  - service: name={{ item }} state=started
+    with_items:
+      - nginx
+      - mysql
+
+
+- name: Python2.7 specific
+  hosts: py27
+  tasks:
+
+  - apt: name={{ item }} state=latest
+    sudo: yes
+    with_items:
+      - python2.7
+      - python2.7-dev
+      - python-pip
+
+  - set_fact: python=/usr/bin/python2.7 pip=/usr/bin/pip2
+
+
+- name: Python3.4 specific
+  hosts: py34
+  tasks:
+
+  - apt: name={{ item }} state=latest
+    sudo: yes
+    with_items:
+      - python3.4
+      - python3.4-dev
+      - python3-pip
+
+  - set_fact: python=/usr/bin/python3.4 pip=/usr/bin/pip3
+
+
+- name: Python modules
+  hosts: all
+  sudo: yes
+  tasks:
+
+  - pip: requirements=/vagrant/requirements.txt state=latest executable={{ pip }}
+  - pip: name=flup6 state=latest executable={{ pip }}
+
+
+- name: Database initialization
+  hosts: all
+  tasks:
+
+  - mysql_db: name={{ item }} state=command
+    with_items:
+      - demo_admin
+      - demo_front
+    when: reinit
+
+  - mysql_db: name=demo_admin encoding=utf8
+    notify: Init database
+
+  - mysql_db: name=demo_front encoding=utf8
+    notify: Create test data
+
+  - mysql_user: name=demo_admin password=demo_admin priv=demo_admin.*:ALL/demo_front.*:ALL
+  - mysql_user: name=demo_front password=demo_front priv=demo_front.*:SELECT
+
+  - command: "{{ python }} /vagrant/manage.py db:create_tables"
+
+  handlers:
+    - name: Init database
+      command: "{{ python }} /vagrant/manage.py db:init"
+      
+    - name: Create test data
+      command: "{{ python }} /vagrant/manage.py db:gen"
+
+  vars:
+    - reinit: false
+
+
+- name: Web server configuration
+  hosts: all
+  sudo: yes
+  tasks:
+    - template: src=init.d-template.j2 dest=/etc/init.d/iktomi-cms-demo mode=0755
+      notify: Restart app
+    - copy: src=cfg_local_common.py dest=/vagrant/cfg_local.py
+  handlers:
+    - name: Restart app
+      service: name=iktomi-cms-demo state=restarted
